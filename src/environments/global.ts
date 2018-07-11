@@ -1,3 +1,4 @@
 export var Global = {
-  url: ''
+  url: 'http://localhost:8080/api/',
+  header_color: 'blue'
 };

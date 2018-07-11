@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+//import { HttpModule } from '@angular/http';
 
 //Routes
 import { routing, appRoutingProviders } from './app.routing';
@@ -19,6 +21,8 @@ import { ProductListComponent } from './components/product-list.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    //HttpModule,
     routing
   ],
   providers: [
