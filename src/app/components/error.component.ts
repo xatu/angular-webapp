@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: '../views/error.html'
 })
 export class ErrorComponent {
-  public titulo: string;
+  public title: string;
 
   constructor(){
-    this.titulo = "Error!, Pagina no encontrada."
+    this.title = "Error!, Pagina no encontrada."
   }
 
   ngOnInit(){
-    console.log("Componente error cargado")
+    console.log("Se ha cargado el componente Error")
   }
 }

@@ -11,7 +11,7 @@ import { Product } from '../models/product';
 
 })
 export class ProductListComponent{
-  public titulo: string;
+  public title: string;
   public products: Product[];
 
   constructor(
@@ -19,11 +19,11 @@ export class ProductListComponent{
     private router: Router,
     private productService: ProductService
   ){
-    this.titulo = 'Listado de productos';
+    this.title = 'Listado de productos';
   }
 
   ngOnInit(){
-    console.log('Se ha cargado el componente listado de productos');
+    console.log('Se ha cargado el componente ProductList');
     this.productService.getProducts()
       .subscribe( (result: any) => {
         if(result.code != 200) {

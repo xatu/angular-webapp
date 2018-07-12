@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product'
@@ -19,4 +20,46 @@ export class ProductService{
   getProducts(){
     return this.http.get(this.url+'products');
   }
+
+  addProduct(product: Product){
+    let json = JSON.stringify(product);
+    let params = 'json='+json;
+    let httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+
+    return this.http.post(this.url+'insert-product', params, httpOptions);
+  }
+
+  onUpload(file: File) {
+    let formData = new FormData();
+    formData.append('uploads', file, file.name)
+    return this.http.post(this.url+'upload-file', formData);
+  }
+
+/*
+  makeFileRequest(params: Array<string>, files: Array<File>){
+    return new Promise((resolve, reject) =>{
+      var formData: any = new FormData();
+      var xhr = new XMLHttpRequest();
+      for(var i = 0; i < files.length; i++){
+        formData.append('uploads', files[i], files[i].name);
+      }
+
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4) {
+          if(xhr.status == 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(xhr.response);
+          }
+        }
+      };
+      xhr.open("POST",this.url+'upload-file', true);
+      xhr.send(formData);
+    });
+  }
+*/
 }
