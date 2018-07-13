@@ -17,8 +17,28 @@ export class ProductService{
     this.url = Global.url;
   }
 
+  getProduct(id){
+    return this.http.get(this.url+'product/'+id);
+  }
+
   getProducts(){
     return this.http.get(this.url+'products');
+  }
+
+  editProduct(id,product: Product){
+    let json = JSON.stringify(product);
+    let params = 'json='+json;
+    let httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    };
+
+    return this.http.post(this.url+'update-product/'+id, params, httpOptions);
+  }
+
+  deleteProduct(id){
+    return this.http.get(this.url+'delete-product/'+id);
   }
 
   addProduct(product: Product){
@@ -39,27 +59,4 @@ export class ProductService{
     return this.http.post(this.url+'upload-file', formData);
   }
 
-/*
-  makeFileRequest(params: Array<string>, files: Array<File>){
-    return new Promise((resolve, reject) =>{
-      var formData: any = new FormData();
-      var xhr = new XMLHttpRequest();
-      for(var i = 0; i < files.length; i++){
-        formData.append('uploads', files[i], files[i].name);
-      }
-
-      xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4) {
-          if(xhr.status == 200) {
-            resolve(JSON.parse(xhr.response));
-          } else {
-            reject(xhr.response);
-          }
-        }
-      };
-      xhr.open("POST",this.url+'upload-file', true);
-      xhr.send(formData);
-    });
-  }
-*/
 }

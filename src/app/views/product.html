@@ -22,8 +22,13 @@
   <input type="text" #price="ngModel" name="price" [(ngModel)]="product.price" class="form-control" required pattern="[0-9]+" />
 
   <label>Imagen</label>
+  <div *ngIf="is_edit">
+    <div *ngIf="product.image != ''">
+      <img src="http://localhost:8080/uploads/{{product.image}}" width="60"/>
+    </div>
+  </div>
   <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
 
   <br>
-  <input type="submit" value="Enviar" [disabled]="!formProduct.form.valid" class="btn btn-success">
+  <input type="submit" value="{{button}}" [disabled]="!formProduct.form.valid" class="btn btn-success">
 </form>

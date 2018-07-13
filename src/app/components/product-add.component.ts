@@ -6,11 +6,12 @@ import { Product } from '../models/product';
 
 @Component({
   selector: 'product-add',
-  templateUrl: '../views/product-add.html',
+  templateUrl: '../views/product.html',
   providers: [ProductService]
 })
 export class ProductAddComponent {
   public title: string;
+  public button: string;
   public product: Product;
   public filesToUpload;
 
@@ -20,6 +21,7 @@ export class ProductAddComponent {
     private router: Router
   ){
     this.title = 'Crear nuevo producto';
+    this.button = 'Guardar';
     this.product = new Product(0,'','',0,'');
   }
 
