@@ -31,15 +31,18 @@ export class ProductAddComponent {
 
   onSubmit(){
     if(this.filesToUpload) {
-      this.productService.onUpload(this.filesToUpload)
-            .subscribe((result:any)=> {
+      this.productService.onUpload(this.filesToUpload).subscribe(
+        result => {
               if(result.code != 200) {
                 console.log(result);
               } else{
                 this.product.image = result.filename;
                 this.saveProduct();
               }
-            }
+            },
+        error => {
+          console.log(<any>error);
+        }
       );
     } else {
       this.saveProduct();
@@ -47,21 +50,22 @@ export class ProductAddComponent {
   }
 
   saveProduct(){
-    this.productService.addProduct(this.product)
-      .subscribe((result: any) => {
+    this.productService.addProduct(this.product).subscribe(
+      result => {
         if(result.code != 200) {
           console.log(result);
         } else{
           this.router.navigate(['/product-list']);
         }
+      },
+      error => {
+        console.log(<any>error);
       }
     );
   }
 
-
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files[0];
-
   }
 
 }

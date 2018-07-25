@@ -27,13 +27,16 @@ export class ProductDetailComponent {
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params['id'];
       this.productService.getProduct(id).subscribe(
-        (result: any) => {
+        result => {
           if(result.code == 200) {
             this.product = result.data[0];
           } else {
             this.router.navigate(['/error']);
             console.log(result);
           }
+        },
+        error => {
+          console.log(<any>error);
         }
       );
     });

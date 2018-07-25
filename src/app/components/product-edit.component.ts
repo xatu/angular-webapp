@@ -33,15 +33,18 @@ export class ProductEditComponent {
 
   onSubmit(){
     if(this.filesToUpload) {
-      this.productService.onUpload(this.filesToUpload)
-            .subscribe((result:any)=> {
+      this.productService.onUpload(this.filesToUpload).subscribe(
+        result => {
               if(result.code != 200) {
                 console.log(result);
               } else{
                 this.product.image = result.filename;
                 this.updateProduct();
               }
-            }
+            },
+        error => {
+          console.log(<any>error);
+        }
       );
     } else {
       this.updateProduct();
@@ -51,13 +54,16 @@ export class ProductEditComponent {
   updateProduct(){
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params['id'];
-      this.productService.editProduct(id,this.product)
-        .subscribe((result: any) => {
+      this.productService.editProduct(id,this.product).subscribe(
+        result => {
           if(result.code != 200) {
             console.log(result);
           } else{
             this.router.navigate(['/product',id]);
           }
+        },
+        error => {
+          console.log(<any>error);
         }
       );
     });
@@ -71,12 +77,15 @@ export class ProductEditComponent {
     this.activatedRoute.params.forEach((params: Params) => {
       let id = params['id'];
       this.productService.getProduct(id).subscribe(
-        (result: any) => {
+        result => {
           if(result.code == 200) {
             this.product = result.data[0];
           } else {
             this.router.navigate(['/error']);
           }
+        },
+        error => {
+          console.log(<any>error);
         }
       );
     });

@@ -32,12 +32,15 @@ export class ProductListComponent{
 
   getProducts(){
     this.productService.getProducts().subscribe(
-      (result: any) => {
+      result => {
         if(result.code != 200) {
           console.log(result);
         } else {
           this.products = result.data;
         }
+      },
+      error => {
+        console.log(<any>error);
       }
     );
   }
@@ -52,12 +55,15 @@ export class ProductListComponent{
 
   onDeleteProduct(id){
     this.productService.deleteProduct(id).subscribe(
-      (result: any) => {
+      result => {
         if(result.code != 200) {
           console.log('Error al borrar producto');
         } else {
           this.getProducts();
         }
+      },
+      error => {
+        console.log(<any>error);
       }
     );
   }

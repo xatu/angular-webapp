@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 //import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { map, take } from 'rxjs/operators';
+//import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product'
 import { Global } from '../../environments/global';
@@ -17,15 +17,15 @@ export class ProductService{
     this.url = Global.url;
   }
 
-  getProduct(id){
+  getProduct(id): Observable<any>{
     return this.http.get(this.url+'product/'+id);
   }
 
-  getProducts(){
+  getProducts(): Observable<any>{
     return this.http.get(this.url+'products');
   }
 
-  editProduct(id,product: Product){
+  editProduct(id,product: Product): Observable<any>{
     let json = JSON.stringify(product);
     let params = 'json='+json;
     let httpOptions = {
@@ -37,11 +37,11 @@ export class ProductService{
     return this.http.post(this.url+'update-product/'+id, params, httpOptions);
   }
 
-  deleteProduct(id){
+  deleteProduct(id): Observable<any>{
     return this.http.get(this.url+'delete-product/'+id);
   }
 
-  addProduct(product: Product){
+  addProduct(product: Product): Observable<any>{
     let json = JSON.stringify(product);
     let params = 'json='+json;
     let httpOptions = {
@@ -53,7 +53,7 @@ export class ProductService{
     return this.http.post(this.url+'insert-product', params, httpOptions);
   }
 
-  onUpload(file: File) {
+  onUpload(file: File): Observable<any>{
     let formData = new FormData();
     formData.append('uploads', file, file.name)
     return this.http.post(this.url+'upload-file', formData);
