@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: '../views/home.html'
 })
 export class HomeComponent {
-  public tittle: string;
+  public title: string;
 
   constructor(){
-    this.tittle = 'Webapp de productos';
+    this.title = 'Webapp de productos';
   }
 
   ngOnInit(){

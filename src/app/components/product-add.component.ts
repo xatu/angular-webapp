@@ -14,6 +14,7 @@ export class ProductAddComponent {
   public button: string;
   public product: Product;
   public filesToUpload;
+  public is_edit;
 
   constructor(
     private productService: ProductService,
@@ -23,6 +24,7 @@ export class ProductAddComponent {
     this.title = 'Crear nuevo producto';
     this.button = 'Guardar';
     this.product = new Product(0,'','',0,'');
+    this.is_edit = false;
   }
 
   ngOnInit(){
