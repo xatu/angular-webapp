@@ -2,12 +2,12 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //Components
-import { HomeComponent } from './components/home.component';
-import { ErrorComponent } from './components/error.component';
-import { ProductListComponent } from './components/product-list.component';
-import { ProductAddComponent } from './components/product-add.component';
-import { ProductDetailComponent } from './components/product-detail.component';
-import { ProductEditComponent } from './components/product-edit.component';
+import { HomeComponent } from './components/home/home.component';
+import { ErrorComponent } from './components/error/error.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},

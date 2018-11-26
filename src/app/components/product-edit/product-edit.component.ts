@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { ProductService } from '../services/product.service';
-import { Product } from '../models/product';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'product-edit',
-  templateUrl: '../views/product.html',
+  templateUrl: './product-edit.html',
   providers: [ProductService]
 })
 export class ProductEditComponent {

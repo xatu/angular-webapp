@@ -18,7 +18,7 @@ export class ProductService{
   }
 
   getProduct(id): Observable<any>{
-    return this.http.get(this.url+'product/'+id);
+    return this.http.get(this.url+'products/'+id);
   }
 
   getProducts(): Observable<any>{
@@ -34,11 +34,11 @@ export class ProductService{
       })
     };
 
-    return this.http.post(this.url+'update-product/'+id, params, httpOptions);
+    return this.http.put(this.url+'products/'+id, params, httpOptions);
   }
 
   deleteProduct(id): Observable<any>{
-    return this.http.get(this.url+'delete-product/'+id);
+    return this.http.delete(this.url+'products/'+id);
   }
 
   addProduct(product: Product): Observable<any>{
@@ -50,13 +50,13 @@ export class ProductService{
       })
     };
 
-    return this.http.post(this.url+'insert-product', params, httpOptions);
+    return this.http.post(this.url+'products', params, httpOptions);
   }
 
   onUpload(file: File): Observable<any>{
     let formData = new FormData();
     formData.append('uploads', file, file.name)
-    return this.http.post(this.url+'upload-file', formData);
+    return this.http.post(this.url+'images', formData);
   }
 
 }
